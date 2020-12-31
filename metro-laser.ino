@@ -79,7 +79,7 @@ void loop()
   display.setCursor(0, 0);
   display.print("METROLASER");
   display.setCursor(0, 30);
-  display.print("Medida: ");
+  display.print("Medida: ");  
   display.print(distance, 2);
   display.print(" cm");
   delay(1000);
@@ -96,7 +96,7 @@ void displayTime()
 {
   byte second, minute, hour, dayOfWeek, dayOfMonth, month, year;
   // retrieve data from DS3231
-  Struct reloj = readDS3231time(&second, &minute, &hour, &dayOfWeek, &dayOfMonth, &month,
+  readDS3231time(&second, &minute, &hour, &dayOfWeek, &dayOfMonth, &month,
                  &year);
   // send it to the oled display
   display.setCursor(70, 10);
