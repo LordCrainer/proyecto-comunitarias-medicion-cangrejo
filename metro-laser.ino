@@ -5,6 +5,7 @@
 #include <SPI.h>
 
 #include "env.h"
+
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 #include "./src/components/sd/service.hpp"
