@@ -24,11 +24,7 @@ struct Date
   byte year;
 };
 
-void read(struct Date *date){
-    date->second = 100;
-    return date;
-}
-
+Date tiempo;
 
 void readDS3231time(byte *second,
                     byte *minute,
