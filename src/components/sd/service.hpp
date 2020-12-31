@@ -1,3 +1,5 @@
+// FUNCIONES DE LA SD
+
 void pinModeSD(uint8_t boton, uint8_t input)
 {
   pinMode(boton, input);
