@@ -1,3 +1,5 @@
+#include "./entities.hpp"
+
 void setDS3231time(byte second, byte minute, byte hour, byte dayOfWeek, byte dayOfMonth, byte month, byte year)
 {
   // sets time and date data to DS3231
@@ -13,39 +15,24 @@ void setDS3231time(byte second, byte minute, byte hour, byte dayOfWeek, byte day
   Wire.endTransmission();
 }
 
-struct Date
-{
-  byte second;
-  byte minute;
-  byte hour;
-  byte dayOfWeek;
-  byte dayOfMonth;
-  byte month; 
-  byte year;
-};
 
-Date tiempo;
 
-void readDS3231time(byte *second,
-                    byte *minute,
-                    byte *hour,
-                    byte *dayOfWeek,
-                    byte *dayOfMonth,
-                    byte *month,
-                    byte *year)
+Date readDS3231time()
 {
+  Date tiempo;
   Wire.beginTransmission(DS3231_I2C_ADDRESS);
   Wire.write(0); // set DS3231 register pointer to 00h
   Wire.endTransmission();
   Wire.requestFrom(DS3231_I2C_ADDRESS, 7);
   // request seven bytes of data from DS3231 starting from register 00h
-  *second = bcdToDec(Wire.read() & 0x7f);
-  *minute = bcdToDec(Wire.read());
-  *hour = bcdToDec(Wire.read() & 0x3f);
-  *dayOfWeek = bcdToDec(Wire.read());
-  *dayOfMonth = bcdToDec(Wire.read());
-  *month = bcdToDec(Wire.read());
-  *year = bcdToDec(Wire.read());
+  tiempo.second = bcdToDec(Wire.read() & 0x7f);
+  tiempo.minute = bcdToDec(Wire.read());
+  tiempo.hour = bcdToDec(Wire.read() & 0x3f);
+  tiempo.dayOfWeek = bcdToDec(Wire.read());
+  tiempo.dayOfMonth = bcdToDec(Wire.read());
+  tiempo.month = bcdToDec(Wire.read());
+  tiempo.year = bcdToDec(Wire.read());
+  return tiempo;
 }
 
 /*      myFile.print("Tiempo(ms)="); //Escribir los datos en el archivo creado en la SD
