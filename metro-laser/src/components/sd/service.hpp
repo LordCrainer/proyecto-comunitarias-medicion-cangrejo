@@ -1,8 +1,8 @@
 // FUNCIONES DE LA SD
 
-void pinModeSD(uint8_t boton, uint8_t input)
+void pinModeSD(uint8_t SAVE_BOTON, uint8_t input)
 {
-  pinMode(boton, input);
+  pinMode(SAVE_BOTON, input);
 }
 
 boolean initSD()

@@ -22,7 +22,7 @@
 
 void setup()
 {
-  pinModeSD(BOTON, INPUT);
+  pinModeSD(SAVE_BOTON, INPUT);
   Wire.begin();
   Serial.begin(115200);
 
@@ -69,7 +69,7 @@ void loop()
   float distance = 13 * pow(volts, -1);  // worked out from datasheet graph
 
   //Almacenar los datos en la SD
-  val = digitalRead(BOTON);
+  val = digitalRead(SAVE_BOTON);
   // escribirSD();
 
   displayTime();
