@@ -4,10 +4,11 @@
 #include <SD.h>
 #include <SPI.h>
 
+
 #include "env.h"
 
 
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+#include "./config/lcd.hpp"
 
 #include "./src/components/sd/service.hpp"
 #include "./src/components/lcd-oled/service.hpp"
@@ -27,8 +28,8 @@ void setup()
 
   // set the initial time here:
   // DS3231 seconds, minutes, hours, day, date, month, year
-  setDS3231time(30, 9, 0, 6, 18, 12, 20); //edita para poner la hora y fecha que estés, y ahí sube al arduino. Luego de subido, comenta esta línea de codigo, y vuelve a subir.
-  displayInitSD();
+  setDS3231time(30, 9, 0, 6, 18, 12, 20); //setea la hora y fecha 
+  // displayInitSD();
 
   //CÓDIGO PARA SD
   display.setTextSize(1);
@@ -47,8 +48,8 @@ void setup()
   display.clearDisplay();
   Serial.println(F("inicializacion exitosa"));
   /////////////////////////////////////////////////////////////////
-  setDS3231time();
-  readDS3231time();
+  // setDS3231time();
+  // readDS3231time();
 }
 
 void loop()
@@ -69,7 +70,7 @@ void loop()
 
   //Almacenar los datos en la SD
   val = digitalRead(BOTON);
-  escribirSD();
+  // escribirSD();
 
   displayTime();
 
@@ -96,7 +97,7 @@ void displayTime()
 {
   byte second, minute, hour, dayOfWeek, dayOfMonth, month, year;
   // retrieve data from DS3231
-  Struct reloj = readDS3231time(&second, &minute, &hour, &dayOfWeek, &dayOfMonth, &month,
+  readDS3231time(&second, &minute, &hour, &dayOfWeek, &dayOfMonth, &month,
                  &year);
   // send it to the oled display
   display.setCursor(70, 10);

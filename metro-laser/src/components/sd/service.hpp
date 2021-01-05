@@ -5,7 +5,7 @@ void pinModeSD(uint8_t boton, uint8_t input)
   pinMode(boton, input);
 }
 
-boolean initSD(byte val)
+boolean initSD()
 {
   if (!SD.begin(10))
   { //Condicion por si falla la inicializacion de la tarjeta SD

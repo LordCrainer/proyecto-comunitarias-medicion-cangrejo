@@ -1,5 +1,5 @@
 {
-    "sketch": "metro-laser.ino",
+    "sketch": "metro-laser/metro-laser.ino",
     "board": "arduino:avr:nano",
     "configuration": "cpu=atmega328",
     "build": "./build"
