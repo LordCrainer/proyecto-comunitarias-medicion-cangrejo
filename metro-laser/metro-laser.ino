@@ -10,11 +10,11 @@
 
 #include "./config/lcd.hpp"
 
-#include "./src/components/sd/service.hpp"
-#include "./src/components/lcd-oled/service.hpp"
+#include "./src/modules/sd/service.hpp"
+#include "./src/modules/lcd-oled/service.hpp"
 
 #include "./src/utils/conversion.hpp"
-#include "./src/utils/date.hpp"
+#include "./src/utils/date/service.hpp"
 
 // PARTE DE CÓDIGO PARA LA FECHA Y HORA
 
@@ -54,9 +54,7 @@ void setup()
 
 void loop()
 {
-  byte second, minute, hour, dayOfWeek, dayOfMonth, month, year;
-  readDS3231time(&second, &minute, &hour, &dayOfWeek, &dayOfMonth, &month,
-                 &year);
+  Date tiempo = readDS3231time();
 
   float sum = 0;
   for (int i = 0; i < 16; i++)
@@ -95,33 +93,31 @@ void loop()
 // PARTE DE CÓDIGO PARA LA FECHA Y HORA
 void displayTime()
 {
-  byte second, minute, hour, dayOfWeek, dayOfMonth, month, year;
   // retrieve data from DS3231
-  readDS3231time(&second, &minute, &hour, &dayOfWeek, &dayOfMonth, &month,
-                 &year);
+  Date tiempo = readDS3231time();
   // send it to the oled display
   display.setCursor(70, 10);
-  display.print(hour, DEC);
+  display.print(tiempo.hour, DEC);
   // convert the byte variable to a decimal number when displayed
   display.print(":");
-  if (minute < 10)
+  if (tiempo.minute < 10)
   {
     display.print("0");
   }
-  display.print(minute, DEC);
+  display.print(tiempo.minute, DEC);
   display.print(":");
-  if (second < 10)
+  if (tiempo.second < 10)
   {
     display.print("0");
   }
-  display.print(second, DEC);
+  display.print(tiempo.second, DEC);
 
   display.setCursor(70, 0);
-  display.print(dayOfMonth, DEC);
+  display.print(tiempo.dayOfMonth, DEC);
   display.print("/");
-  display.print(month, DEC);
+  display.print(tiempo.month, DEC);
   display.print("/");
-  display.print(year, DEC);
+  display.print(tiempo.year, DEC);
   display.println();
   display.display();
 }
