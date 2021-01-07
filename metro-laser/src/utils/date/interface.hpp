@@ -8,5 +8,3 @@ struct Date
   byte month; 
   byte year;
 };
-
-Date dateTime;

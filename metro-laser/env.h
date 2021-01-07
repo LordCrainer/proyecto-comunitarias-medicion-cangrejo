@@ -7,3 +7,4 @@ const byte DS3231_I2C_ADDRESS = 0x68;
 
 // ARDUINO
 const byte SAVE_BOTON = 2; //Pin de la SAVE_BOTONera usada para almacenar los datos
+

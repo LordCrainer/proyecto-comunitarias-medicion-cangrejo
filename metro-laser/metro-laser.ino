@@ -14,8 +14,7 @@
 #include "./src/utils/conversion.hpp"
 #include "./src/utils/date/service.hpp"
 
-// PARTE DE CÓDIGO PARA LA FECHA Y HORA
-
+// SENSOR
 #define sensor A1 // Sharp IR GP2Y0A41SK0F (4-30cm, analog)
 
 void setup()
@@ -23,7 +22,7 @@ void setup()
   pinModeSD(SAVE_BOTON, INPUT);
   Wire.begin();
   Serial.begin(115200);
-
+  Date dateTime;
   // DS3231 setea la hora y fecha
   dateTime.year = 20;
   dateTime.month = 1;
@@ -35,22 +34,6 @@ void setup()
   setDS3231time(dateTime); 
   // displayInitSD();
 
-  //CÓDIGO PARA SD
-  display.setTextSize(1);
-  display.setTextColor(WHITE);
-  display.setCursor(0, 0);
-  display.print("Iniciando ..."); //Mensajes iniciales
-  delay(3000);
-  display.clearDisplay();
-  Serial.print(F("Iniciando SD ..."));
-  initSD();
-  display.clearDisplay();
-  display.setCursor(0, 0);
-  display.println("SD lista        ");
-  display.display();
-  delay(5000);
-  display.clearDisplay();
-  Serial.println(F("inicializacion exitosa"));
   /////////////////////////////////////////////////////////////////
   // setDS3231time();
   // readDS3231time();
@@ -59,7 +42,6 @@ void setup()
 void loop()
 {
   Date tiempo = readDS3231time();
-
   float sum = 0;
   for (int i = 0; i < 16; i++)
   {
@@ -71,10 +53,10 @@ void loop()
   float distance = 13 * pow(volts, -1);  // worked out from datasheet graph
 
   //Almacenar los datos en la SD
-  val = digitalRead(SAVE_BOTON);
+  int val = digitalRead(SAVE_BOTON);
   // escribirSD();
 
-  displayTime();
+  // displayTime();
 
   display.clearDisplay();
   display.setTextSize(1);
