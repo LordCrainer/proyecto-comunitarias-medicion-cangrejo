@@ -4,7 +4,9 @@ struct Date
   byte minute;
   byte hour;
   byte dayOfWeek;
-  byte dayOfMonth;
+  byte day;
   byte month; 
   byte year;
 };
+
+Date dateTime;

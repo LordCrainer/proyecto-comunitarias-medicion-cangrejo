@@ -4,9 +4,7 @@
 #include <SD.h>
 #include <SPI.h>
 
-
 #include "env.h"
-
 
 #include "./config/lcd.hpp"
 
@@ -26,9 +24,15 @@ void setup()
   Wire.begin();
   Serial.begin(115200);
 
-  // set the initial time here:
-  // DS3231 seconds, minutes, hours, day, date, month, year
-  setDS3231time(30, 9, 0, 6, 18, 12, 20); //setea la hora y fecha 
+  // DS3231 setea la hora y fecha
+  dateTime.year = 20;
+  dateTime.month = 1;
+  dateTime.day = 7;
+  dateTime.dayOfWeek=4;
+  dateTime.hour = 0;
+  dateTime.minute = 0;
+  dateTime.second = 0;
+  setDS3231time(dateTime); 
   // displayInitSD();
 
   //CÓDIGO PARA SD
@@ -89,36 +93,3 @@ void loop()
   //  Serial.println("Colocar bien la base");
   //  }
 }
-
-// PARTE DE CÓDIGO PARA LA FECHA Y HORA
-void displayTime()
-{
-  // retrieve data from DS3231
-  Date tiempo = readDS3231time();
-  // send it to the oled display
-  display.setCursor(70, 10);
-  display.print(tiempo.hour, DEC);
-  // convert the byte variable to a decimal number when displayed
-  display.print(":");
-  if (tiempo.minute < 10)
-  {
-    display.print("0");
-  }
-  display.print(tiempo.minute, DEC);
-  display.print(":");
-  if (tiempo.second < 10)
-  {
-    display.print("0");
-  }
-  display.print(tiempo.second, DEC);
-
-  display.setCursor(70, 0);
-  display.print(tiempo.dayOfMonth, DEC);
-  display.print("/");
-  display.print(tiempo.month, DEC);
-  display.print("/");
-  display.print(tiempo.year, DEC);
-  display.println();
-  display.display();
-}
-//////////////////////////////////////////////////////////////////////////////////////
