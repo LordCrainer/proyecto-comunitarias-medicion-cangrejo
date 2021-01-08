@@ -56,6 +56,7 @@ void loop()
   lcd = {{0, 30}, {WHITE, 1}};
   setConfigLCD(lcd);
   printLCD("Medida: " + (String)distance + " CM");
+  delay(1000);
 
   /*   float sum = 0;
   for (int i = 0; i < 16; i++)
@@ -73,8 +74,8 @@ void loop()
 
   // displayTime();
 
-  display.clearDisplay();
-/*   display.setTextSize(1);
+/*   display.clearDisplay();
+  display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0, 0);
   display.print("METROLASER");
@@ -82,7 +83,6 @@ void loop()
   display.print("Medida: ");
   display.print(distance, 2);
   display.print(" cm"); */
-  delay(1000);
 
   //  Serial.print("Medida: "); Serial.print(distance,2); Serial.print(" cm");
   //  Serial.println();
