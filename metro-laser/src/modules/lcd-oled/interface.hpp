@@ -1,6 +1,6 @@
 struct ITextLCD {
     byte color;
-    byte sizeText;
+    byte size;
 };
 
 struct ICursorLCD {

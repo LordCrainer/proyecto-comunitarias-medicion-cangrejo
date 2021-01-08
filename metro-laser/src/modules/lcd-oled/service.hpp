@@ -1,6 +1,6 @@
 #include "./interface.hpp"
 
-void displayTime(String data, int cursorX, int cursorY, int colorText)
+/* void displayTime(String data, int cursorX, int cursorY, int colorText)
 {
     display.setCursor(70, 10);
     // retrieve data from DS3231
@@ -29,13 +29,13 @@ void displayTime(String data, int cursorX, int cursorY, int colorText)
     display.print(tiempo.year, DEC);
     display.println();
     display.display();
-}
+} */
 
-void setLCD(IConfigLCD config)
+void setConfigLCD(IConfigLCD config)
 {
     display.setCursor(config.cursor.x, config.cursor.y);
     display.setTextColor(config.text.color);
-    display.setTextSize(config.text.sizeText);
+    display.setTextSize(config.text.size);
 }
 
 void printLCD(String data)
@@ -53,7 +53,7 @@ void showLCD()
     display.display();
 }
 
-void displayOnLCD()
+/* void displayOnLCD()
 {
     //CÓDIGO PARA SD
     display.setTextSize(1);
@@ -71,4 +71,4 @@ void displayOnLCD()
     delay(5000);
     display.clearDisplay();
     Serial.println(F("inicializacion exitosa"));
-}
+} */
