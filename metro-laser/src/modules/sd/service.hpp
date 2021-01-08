@@ -1,11 +1,11 @@
 // FUNCIONES DE LA SD
 
-void pinModeSD(uint8_t boton, uint8_t input)
+void pinModeSD(uint8_t SAVE_BOTON, uint8_t input)
 {
-  pinMode(boton, input);
+  pinMode(SAVE_BOTON, input);
 }
 
-boolean initSD(byte val)
+boolean initSD()
 {
   if (!SD.begin(10))
   { //Condicion por si falla la inicializacion de la tarjeta SD
